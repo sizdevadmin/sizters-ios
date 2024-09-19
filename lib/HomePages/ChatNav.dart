@@ -29,6 +29,9 @@ class ChatNav extends StatefulWidget {
 }
 
 class _ChatNavState extends State<ChatNav> {
+
+
+  late BuildContext loadingDialog;
   // snackbar ==================================================================================================
 
   mysnackbar(String message, BuildContext context) {
@@ -43,13 +46,15 @@ class _ChatNavState extends State<ChatNav> {
 
   // simple dialog =============================================================================================
 
-  dialodShow(BuildContext context) {
+  dialodShow() {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         showDialog(
             barrierDismissible: false,
             context: context,
             builder: (context) {
+
+              loadingDialog=context;
               return const Center(
                 child: CircularProgressIndicator(
                   color: MyColors.themecolor,
@@ -189,15 +194,62 @@ class _ChatNavState extends State<ChatNav> {
                             ),
                           ),
 
-                          
-                                     InkWell(
-              
+                          InkWell(
+                            onTap: () async {
+                              final BottomNavController controller =
+                                  Get.put(BottomNavController());
 
-              splashFactory: NoSplash.splashFactory,
-              highlightColor: Colors.transparent,
-                
-                onTap: () async {
-                  SharedPreferences sharedPreferences =
+                              dialodShow();
+
+                              if (await controller.getHomeData(context, "")) {
+                                Navigator.pop(loadingDialog);
+
+                                checkValues();
+
+                                profileController proController =
+                                    Get.put(profileController());
+
+                                proController.getProfleValue();
+                              }
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                  top: 20, left: 20, right: 20),
+                              alignment: Alignment.center,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5))),
+                              child: Text(
+                                "refresh".toUpperCase(),
+                                style: GoogleFonts.lexendExa(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 20),
+
+                           
+                            Text(
+                                "Try refreshing",
+                                style: GoogleFonts.lexendDeca(
+                                  fontStyle: FontStyle.italic,
+                                     fontSize: 16,
+                                    color: Colors.grey,
+                                    
+                                    fontWeight: FontWeight.w300),
+                              ),
+
+                          
+                                     Container(
+                                       margin: const EdgeInsets.only(top: 60, bottom: 10),
+                                       child: InkWell(
+                                        onTap: ()async {
+                                            SharedPreferences sharedPreferences =
                       await SharedPreferences.getInstance();
 
                   sharedPreferences.setString(SizValue.underReview, "null");
@@ -212,19 +264,17 @@ class _ChatNavState extends State<ChatNav> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => LoginPage(email: "")));
-                },
-                child: Container(
-                  margin: const EdgeInsets.only(top: 60, bottom: 10),
-                  child: Text(
-                    "Use another account ?".toUpperCase(),
-                    style: GoogleFonts.lexendDeca(
-                        decoration: TextDecoration.underline,
-                        fontSize: 16,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w300),
-                  ),
-                ),
-              ),
+                                        },
+                                         child: Text(
+                                           "Use another account ?".toUpperCase(),
+                                           style: GoogleFonts.lexendDeca(
+                                               decoration: TextDecoration.underline,
+                                               fontSize: 16,
+                                               color: Colors.grey,
+                                               fontWeight: FontWeight.w300),
+                                         ),
+                                       ),
+                                     ),
                         ],
                       ),
                     )

@@ -5,8 +5,8 @@ import 'dart:convert';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:d_chart/commons/config_render.dart';
-import 'package:d_chart/commons/data_model.dart';
+import 'package:d_chart/commons/config_render/config_render.dart';
+import 'package:d_chart/commons/data_model/data_model.dart';
 
 import 'package:d_chart/ordinal/bar.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -1021,15 +1021,63 @@ TextEditingController renterReviewController = TextEditingController();
                                        ),
                                      ),
 
-                                     
-                                     InkWell(
-              
 
-              splashFactory: NoSplash.splashFactory,
-              highlightColor: Colors.transparent,
-                
-                onTap: () async {
-                  SharedPreferences sharedPreferences =
+                                     InkWell(
+                            onTap: () async {
+                              final BottomNavController controller =
+                                  Get.put(BottomNavController());
+
+                              dialodShow(context);
+
+                              if (await controller.getHomeData(context, "")) {
+                                Navigator.pop(context);
+
+                                checkValues();
+
+                                ChatController chatController =
+                                    Get.put(ChatController());
+
+                                chatController.getProfleValue();
+                              }
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                  top: 20, left: 20, right: 20),
+                              alignment: Alignment.center,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5))),
+                              child: Text(
+                                "refresh".toUpperCase(),
+                                style: GoogleFonts.lexendExa(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            ),
+                          ),
+
+                           const SizedBox(height: 20),
+
+                           
+                            Text(
+                                "Try refreshing",
+                                style: GoogleFonts.lexendDeca(
+                                  fontStyle: FontStyle.italic,
+                                     fontSize: 16,
+                                    color: Colors.grey,
+                                    
+                                    fontWeight: FontWeight.w300),
+                              ),
+
+                                     
+                                     Container(
+                                       margin: const EdgeInsets.only(top: 60, bottom: 10),
+                                       child: InkWell(
+                                        onTap: ()async {
+                                           SharedPreferences sharedPreferences =
                       await SharedPreferences.getInstance();
 
                   sharedPreferences.setString(SizValue.underReview, "null");
@@ -1044,19 +1092,17 @@ TextEditingController renterReviewController = TextEditingController();
                       context,
                       MaterialPageRoute(
                           builder: (context) => LoginPage(email: "")));
-                },
-                child: Container(
-                  margin: const EdgeInsets.only(top: 60, bottom: 10),
-                  child: Text(
-                    "Use another account ?".toUpperCase(),
-                    style: GoogleFonts.lexendDeca(
-                        decoration: TextDecoration.underline,
-                        fontSize: 16,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w300),
-                  ),
-                ),
-              ),
+                                        },
+                                         child: Text(
+                                           "Use another account ?".toUpperCase(),
+                                           style: GoogleFonts.lexendDeca(
+                                               decoration: TextDecoration.underline,
+                                               fontSize: 16,
+                                               color: Colors.grey,
+                                               fontWeight: FontWeight.w300),
+                                         ),
+                                       ),
+                                     ),
                                   
                                                       
                                       
@@ -1620,15 +1666,15 @@ TextEditingController renterReviewController = TextEditingController();
 
                                      controller.  profileImage.isEmpty
                                                 ? const SizedBox(
-                                                    width: 70, height: 70)
+                                                    width: 60, height: 60)
                                                 : InkWell(
                                                   onTap: ()async {
                                                    
                                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>MyListing(fromListing: false, initialIndex: 0)));
                                                   },
                                                   child: Container(
-                                                      width: 70,
-                                                      height: 70,
+                                                      width: 60,
+                                                      height: 60,
                                                     
                                                       decoration:
                                                           const BoxDecoration(
@@ -1642,8 +1688,7 @@ TextEditingController renterReviewController = TextEditingController();
                                                         child: CachedNetworkImage(
                                                           imageUrl:  controller.  profileImage,
                                                           fit: BoxFit.cover,
-                                                          height: 55,
-                                                          width: 55,
+                                                        
                                                         ),
                                                       ),
                                                     ),
@@ -3347,10 +3392,10 @@ TextEditingController renterReviewController = TextEditingController();
 
                                         controller.  profileImage.isEmpty
                                                 ? const SizedBox(
-                                                    width: 70, height: 70)
+                                                    width: 60, height: 60)
                                                 : Container(
-                                                    width: 70,
-                                                    height: 70,
+                                                    width: 60,
+                                                    height: 60,
                                                   
                                                     decoration:
                                                         const BoxDecoration(
@@ -3364,8 +3409,7 @@ TextEditingController renterReviewController = TextEditingController();
                                                       child: CachedNetworkImage(
                                                         imageUrl:   controller. profileImage,
                                                         fit: BoxFit.cover,
-                                                        height: 55,
-                                                        width: 55,
+                                                     
                                                       ),
                                                     ),
                                                   ),

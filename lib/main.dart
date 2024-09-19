@@ -1,7 +1,5 @@
 // ignore_for_file: unused_catch_clause, empty_catches, must_be_immutable
-
 import 'dart:async';
-
 import 'package:app_links/app_links.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +8,11 @@ import 'package:page_transition/page_transition.dart';
 import 'package:siz/Pages/ProductView.dart';
 import 'LoginSignUp/Splash.dart';
 
-void main() async {
+void main() async 
+{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyAppLogin());
-
-
-
 }
 
 class MyAppLogin extends StatefulWidget {
@@ -81,11 +77,11 @@ class _MyAppLoginState extends State<MyAppLogin> {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-
+    
      
      builder: (context, child) {
               return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
                 child: child as Widget
               );
             },
@@ -98,10 +94,13 @@ class _MyAppLoginState extends State<MyAppLogin> {
 
         color: Colors.black,
         theme: ThemeData(
+
+          useMaterial3: false,
           textTheme:
               GoogleFonts.lexendDecaTextTheme(Theme.of(context).textTheme),
           splashFactory: NoSplash.splashFactory,
           splashColor: Colors.transparent,
+  
           primarySwatch: const MaterialColor(0xFFAF1010, {
             50: Color(0xFFAF1010),
             100: Color(0xFFAF1010),
@@ -113,7 +112,9 @@ class _MyAppLoginState extends State<MyAppLogin> {
             700: Color(0xFFAF1010),
             800: Color(0xFFAF1010),
             900: Color(0xFFAF1010),
-          }),
+          }
+          
+          ),
         ),
         debugShowCheckedModeBanner: false,
         routes: {

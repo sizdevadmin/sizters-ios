@@ -1603,6 +1603,12 @@ class _ChatInsideState extends State<ChatInside> with WidgetsBindingObserver {
                                         Flexible(
                                           child: TextFormField(
 
+                                  //            onTapOutside: (event) {
+                                  //   setState(() {
+                                  //     FocusManager.instance.primaryFocus?.unfocus();
+                                  //   });
+                                  // },
+
                                             style:  GoogleFonts.lexendDeca(
                                                    fontWeight: FontWeight.w300,
                                                    color: Colors.black,
@@ -1610,30 +1616,30 @@ class _ChatInsideState extends State<ChatInside> with WidgetsBindingObserver {
                                                   fontSize: 16
                                                 ),
 
-                                                 textInputAction: TextInputAction.send,
+                                                 textInputAction: TextInputAction.done,
                                            
                                             showCursor: true,
-                                            onEditingComplete: () {
+                                            // onEditingComplete: () {
 
 
-                                               if (_editingController.text.isEmpty) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar( SnackBar(
-                                                  content:
-                                                      Text("Please type something",style: GoogleFonts.lexendDeca(fontSize: 13,fontWeight: FontWeight.w300,color: Colors.white),),
-                                                  duration:
-                                                      const Duration(milliseconds: 300),
-                                                ));
-                                              } else {
+                                            //    if (_editingController.text.isEmpty) {
+                                            //     ScaffoldMessenger.of(context)
+                                            //         .showSnackBar( SnackBar(
+                                            //       content:
+                                            //           Text("Please type something",style: GoogleFonts.lexendDeca(fontSize: 13,fontWeight: FontWeight.w300,color: Colors.white),),
+                                            //       duration:
+                                            //           const Duration(milliseconds: 300),
+                                            //     ));
+                                            //   } else {
                                                  
-                                                   sendMessage(_editingController.text);
-                                                  _editingController.text = "";
+                                            //        sendMessage(_editingController.text);
+                                            //       _editingController.text = "";
     
                                               
-                                              }
+                                            //   }
 
 
-                                            }, 
+                                            // }, 
                                             controller: _editingController,
                                             decoration:  InputDecoration(
                                                 border: InputBorder.none,

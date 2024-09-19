@@ -292,7 +292,9 @@ class _SizePreferenceState extends State<SizePreference> {
              color: Colors.white,
              borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10)),
              boxShadow: [BoxShadow(
-               color: Color.fromARGB(255, 212, 212, 212),blurRadius: 2,
+               color: Color.fromARGB(255, 212, 212, 212),
+               
+               blurRadius: 2,
                offset: Offset(0, 4)
              )]
            ),

@@ -465,7 +465,7 @@ class _BrandSelectState extends State<BrandSelect> {
 
                 Container(
                 
-                  margin: const EdgeInsets.only(left:30),
+                  margin: const EdgeInsets.only(left:30,top: 20),
                   alignment: Alignment.centerLeft,
                   child: Text('Submit a new brand', style:  GoogleFonts.dmSerifDisplay(fontSize: 20,fontWeight: FontWeight.w400, color: Colors.black),)),
                 Container(
@@ -540,6 +540,8 @@ class _BrandSelectState extends State<BrandSelect> {
                     ),
                   ),
                 ),
+
+                const SizedBox(height: 40)
           
               
               ],

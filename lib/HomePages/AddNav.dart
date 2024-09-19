@@ -99,7 +99,7 @@ class _AddNavState extends State<AddNav> {
                   children: [
                  
                   // heading text 
-                  const SizedBox(height: 20),    
+                  const SizedBox(height: 10),    
                   
                   Container(
                     alignment: Alignment.center,
@@ -132,7 +132,7 @@ class _AddNavState extends State<AddNav> {
                          Expanded(
                            child: Container(
                             
-                            height: 130,
+                            height: 140,
                             decoration:  BoxDecoration(
                              color: Colors.white,
                             
@@ -189,7 +189,7 @@ class _AddNavState extends State<AddNav> {
                   
                            SizedBox(
                   
-                            height: 140,
+                            height: 150,
                             width: 30,
                              child: Column(
                                children: [
@@ -227,7 +227,6 @@ class _AddNavState extends State<AddNav> {
                     ),
                   
                   
-                  
                 //step 2
                   
                    Container(
@@ -242,10 +241,9 @@ class _AddNavState extends State<AddNav> {
                        
                          Expanded(
                            child: Container(
-                           
-                            
+                                        
                            alignment: Alignment.topRight,
-                            height: 130,
+                            height: 140,
                             decoration:  BoxDecoration(
                                color: Colors.white,
                             
@@ -302,7 +300,7 @@ class _AddNavState extends State<AddNav> {
                   
                            SizedBox(
                   
-                            height: 140,
+                            height: 150,
                             width: 30,
                              child: Column(
                                children: [
@@ -358,7 +356,7 @@ class _AddNavState extends State<AddNav> {
                              
                           
                            
-                            height: 130,
+                            height: 140,
                             decoration:  BoxDecoration(
                                color: Colors.white,
                             
@@ -415,7 +413,7 @@ class _AddNavState extends State<AddNav> {
                   
                            SizedBox(
                   
-                            height: 140,
+                            height: 150,
                             width: 30,
                              child: Column(
                                children: [

@@ -710,30 +710,29 @@ class _CartState extends State<Cart> {
                                     children: [
                                       const SizedBox(width: 5),
                                       Expanded(
-                                        child: Container(
-                                          margin: const EdgeInsets.only(
-                                            bottom: 5,
-                                          ),
-                                          child: TextFormField(
-
-
-                                            style:  GoogleFonts.lexendDeca(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 14),
-                                            decoration:  InputDecoration(
-                                                border: InputBorder.none,
-                                                hintText: "Add Coupon...",
-                                                hintStyle: GoogleFonts.lexendDeca(
-                                                    color: Colors.grey,
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 13)),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                inputCoupon = value;
-                                              });
-                                            },
-                                          ),
+                                        child: TextFormField(
+                                        
+                                        
+                                          style:  GoogleFonts.lexendDeca(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 14),
+                                          decoration:  InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText: "Add Coupon...",
+                                              hintStyle: GoogleFonts.lexendDeca(
+                                                  color: Colors.grey,
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 13),
+                                                  
+                                                
+                                                  
+                                                  ),
+                                          onChanged: (value) {
+                                            setState(() {
+                                              inputCoupon = value;
+                                            });
+                                          },
                                         ),
                                       ),
                                       const SizedBox(width: 5),
