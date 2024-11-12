@@ -45,12 +45,15 @@ class ChatController extends GetxController{
 
     update();
       
-   
-      
+ 
   
+  }
 
-    
-  
+  trackNotification(String id) async {
+    try {
+      final response = await http
+          .post(Uri.parse(SizValue.update_push_status), body: {'campaign': id});
+    } catch (e) {}
   }
 
 

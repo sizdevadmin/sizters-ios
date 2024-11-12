@@ -77,12 +77,6 @@ class _LoginPageState extends State<LoginPage> {
      dialodShow();
 
 
-    print("apple id  ==  " +appleId);
-    print(" email ===  " +email);
-    print(" firstName === " +firstname);
-    print(" lastname === " +lastname);
-    print("google id  ==  " +googleID);
-
  
    
 
@@ -191,6 +185,7 @@ try {
         profileController pController=Get.put(profileController());
         pController.getProfleValue();
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BasicLoginInfo(fromWhere:SizValue.authSource)));
+       
        }
 
        else if(verifyResponse["account_status"].toString()=="2")
@@ -215,6 +210,10 @@ try {
         chatController.getProfleValue();
         profileController pController=Get.put(profileController());
         pController.getProfleValue();
+
+        chatController.onConnectPressed();
+         chatController.getChatListOutside(1, "");
+         pController. getaccontDetails(context,"2024");
         
         Navigator.pop(context);
        }

@@ -134,6 +134,10 @@ class _BasicLoginInfoState extends State<BasicLoginInfo> {
 
         }
 
+        chatController.onConnectPressed();
+         chatController.getChatListOutside(1, "");
+         pController. getaccontDetails(context,"2024");
+
 
        
       } else if (basicInfoList["success"] == false) {

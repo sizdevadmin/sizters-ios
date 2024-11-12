@@ -8,8 +8,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:siz/Pages/Cart.dart';
-import 'package:siz/Pages/Wishlist.dart';
 import 'package:siz/Utils/Colors.dart';
 
 import 'dart:io';
@@ -109,9 +107,9 @@ class _SizePreferenceState extends State<SizePreference> {
     updateSize(int updateindex) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    dialodShow(context);
+  
 
-    print("user_key ==== "+ sharedPreferences.getString(SizValue.userKey).toString());
+   
 
     try {
       final response = await http.post(Uri.parse(SizValue.sizePreference), body: {
@@ -129,14 +127,12 @@ class _SizePreferenceState extends State<SizePreference> {
 
       if (checkReponse["success"] == true) {
 
-        Navigator.pop(context);
-
-
-        
+     
+ 
 
         setState(() {
 
-             sizedecordedList[updateindex]["check"]=checkReponse['check'];
+             getallSize();
              controller. pagenoC = 1;
              controller.noMoreDataC=false;
              controller.getProducts(context, "1", 0, "", 1);
@@ -146,15 +142,9 @@ class _SizePreferenceState extends State<SizePreference> {
       
 
 
-    
-     
-      
-        
-      
-
      
       } else if (checkReponse["success"] == false) {
-        Navigator.pop(context);
+        
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(checkReponse["error"].toString(),style: GoogleFonts.lexendDeca(fontSize: 13,fontWeight: FontWeight.w300,color: Colors.white)),duration: const Duration(seconds: 1),));
     
@@ -165,18 +155,18 @@ class _SizePreferenceState extends State<SizePreference> {
 
    
     } on ClientException {
-      Navigator.pop(context);
+     
       mysnackbar(
           "Server not responding please try again after sometimev fg", context);
     } on SocketException {
-      Navigator.pop(context);
+     
       mysnackbar(
           "No Internet connection 😑 please try again after sometime", context);
     } on HttpException {
-      Navigator.pop(context);
+     
       mysnackbar("Something went wrong please try after sometime", context);
     } on FormatException {
-      Navigator.pop(context);
+      
       mysnackbar("Something went wrong please try after sometime", context);
     }
   }
@@ -260,25 +250,27 @@ class _SizePreferenceState extends State<SizePreference> {
                      "Size Preference".toUpperCase(),
                              style: SizValue.toolbarStyle,
                    )),
-               Wrap(
-                 alignment: WrapAlignment.center,
-                 crossAxisAlignment: WrapCrossAlignment.center,
-                 direction: Axis.horizontal,
-                 children: [
-                   InkWell(
+
+                    const SizedBox(width: 60)
+              //  Wrap(
+              //    alignment: WrapAlignment.center,
+              //    crossAxisAlignment: WrapCrossAlignment.center,
+              //    direction: Axis.horizontal,
+              //    children: [
+              //      InkWell(
                      
-                      onTap: () {
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=> Wishlist()));
-                     },
-                     child: SvgPicture.asset("assets/images/heart.svg",width: 20,height: 20,)),
-                   const SizedBox(width: 20),
-                   InkWell(
-                     onTap: () {
-                       Navigator.push(context,MaterialPageRoute(builder: (context)=>const Cart()));
-                     },
-                     child: SvgPicture.asset("assets/images/bag.svg",width: 20,height: 20,)),
-                 ],
-               )
+              //         onTap: () {
+              //          Navigator.push(context, MaterialPageRoute(builder: (context)=> Wishlist()));
+              //        },
+              //        child: SvgPicture.asset("assets/images/heart.svg",width: 20,height: 20,)),
+              //      const SizedBox(width: 20),
+              //      InkWell(
+              //        onTap: () {
+              //          Navigator.push(context,MaterialPageRoute(builder: (context)=>const Cart()));
+              //        },
+              //        child: SvgPicture.asset("assets/images/bag.svg",width: 20,height: 20,)),
+              //    ],
+              //  )
              ],
            ),
          ),

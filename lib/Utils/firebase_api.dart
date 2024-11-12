@@ -6,7 +6,9 @@ import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:siz/Controllers/ChatController.dart';
 
 import 'package:siz/Pages/AllOrderRequest.dart';
 import 'package:siz/Pages/ChatInside.dart';
@@ -63,6 +65,11 @@ class FirebaseApi {
 
        Navigator.push(context, MaterialPageRoute(builder: (context)=>MyListing(fromListing: false, initialIndex: 0)));
 
+    }
+
+    else if (message.data["event"].toString() == "campaign") {
+      ChatController controller = Get.put(ChatController());
+      controller.trackNotification(message.data["campaign"].toString());
     }
 
    

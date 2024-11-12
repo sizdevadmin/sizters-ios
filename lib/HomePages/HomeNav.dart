@@ -7,6 +7,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -967,21 +968,43 @@ class _HomeNavState extends State<HomeNav> {
   }
 
 
+late FacebookAppEvents facebookAppEvents;
+
+
 
  
   @override
   void initState() {
+
+     facebookAppEvents = FacebookAppEvents();
+    facebookAppEvents.setAdvertiserTracking(enabled: true);
+
+  firebaseEventCalled("HomePageIOS");
   
       _scrollControllerMRT.addListener(()async  {
     
      
       scrollListenerMRT();
-    });
+    }); 
      FirebaseApi().initNotifications(context);
      checkFirebaseError();
 
      checkwelcomeDialog();
     super.initState();
+  }
+
+  firebaseEventCalled(String value)
+  {
+
+    try {
+     
+
+      facebookAppEvents.logEvent(
+        name:value
+      );
+    } catch (e) {}
+    
+    
   }
 
   checkwelcomeDialog() async
@@ -1127,7 +1150,7 @@ class _HomeNavState extends State<HomeNav> {
         
         
                                     
-        
+                                     firebaseEventCalled("Click_Become_A_Renter_IOS");
         
                                 
         
@@ -1184,57 +1207,13 @@ class _HomeNavState extends State<HomeNav> {
                                   ),
                                   InkWell(
                                     onTap: ()async {
+
+
+                                               
+                                     firebaseEventCalled("Click_Become_A_Lender_IOS");
         
+                                       
                                     
-        
-        
-                                    SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-                         
-                                 if(sharedPreferences.getString(SizValue.isLogged).toString()=="null")
-                                 {
-        
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage(email: "")));
-        
-                                 }
-        
-                                 else if(sharedPreferences.getString(SizValue.isLogged).toString()=="1")
-                                 {
-        
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>BasicLoginInfo(fromWhere: sharedPreferences.getString(SizValue.source).toString(),)));
-        
-                                 }
-                                 else if(sharedPreferences.getString(SizValue.isLogged).toString()=="2")
-                                 {
-        
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AccountCreate()));
-        
-                                 }
-        
-                                 else if(sharedPreferences.getString(SizValue.underReview).toString()=="0"){
-        
-                                      showReviewdialog(sharedPreferences.getString(SizValue.underReviewMsg).toString(),sharedPreferences.getString(SizValue.underReview).toString());
-        
-        
-                                    }
-        
-                                    else if(sharedPreferences.getString(SizValue.underReview).toString()=="2"){
-        
-                                      showReviewdialog(sharedPreferences.getString(SizValue.rejectedReviewMSG).toString(),sharedPreferences.getString(SizValue.underReview).toString());
-        
-        
-        
-                                    }
-                                    else if(sharedPreferences.getString(SizValue.underReview).toString()=="3"){
-        
-                                      showReviewdialog(sharedPreferences.getString(SizValue.incompleteMessage).toString(),sharedPreferences.getString(SizValue.underReview).toString());
-        
-        
-        
-                                    }
-        
-                                    else
-                                    {
-        
                                       
                                       Navigator.push(
                                           context,
@@ -1242,7 +1221,7 @@ class _HomeNavState extends State<HomeNav> {
                                               builder: (context) =>
                                                    AddNav(fromhome: false,)));
         
-                                    }
+                                    
         
         
         
@@ -2835,6 +2814,8 @@ class _HomeNavState extends State<HomeNav> {
         
                         InkWell(
                           onTap: () {
+
+                            firebaseEventCalled("Click_Start_Renting_IOS");
                             showDialogRental();
                           },
                           child: Container(
@@ -2880,55 +2861,10 @@ class _HomeNavState extends State<HomeNav> {
                           onTap: () async {
         
         
-                            
+                              firebaseEventCalled("Click_Start_Lending_IOS");
         
         
         
-                                SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-                         
-                                 if(sharedPreferences.getString(SizValue.isLogged).toString()=="null")
-                                 {
-        
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage(email: "")));
-        
-                                 }
-        
-        
-                                 else if(sharedPreferences.getString(SizValue.isLogged).toString()=="1")
-                                 {
-        
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>BasicLoginInfo(fromWhere: sharedPreferences.getString(SizValue.source).toString())));
-        
-                                 }
-                                 else if(sharedPreferences.getString(SizValue.isLogged).toString()=="2")
-                                 {
-        
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AccountCreate()));
-        
-                                 }
-        
-                                 else if(sharedPreferences.getString(SizValue.underReview).toString()=="0"){
-        
-                                      showReviewdialog(sharedPreferences.getString(SizValue.underReviewMsg).toString(),sharedPreferences.getString(SizValue.underReview).toString());
-        
-        
-                                    }
-        
-                                    else if(sharedPreferences.getString(SizValue.underReview).toString()=="2"){
-        
-                                      showReviewdialog(sharedPreferences.getString(SizValue.rejectedReviewMSG).toString(),sharedPreferences.getString(SizValue.underReview).toString());
-        
-        
-        
-                                    }
-                                    else if(sharedPreferences.getString(SizValue.underReview).toString()=="3"){
-        
-                                      showReviewdialog(sharedPreferences.getString(SizValue.incompleteMessage).toString(),sharedPreferences.getString(SizValue.underReview).toString());
-        
-                                    }
-        
-                                    else
-                                    {
         
                                       
                             Navigator.push(
@@ -2936,7 +2872,7 @@ class _HomeNavState extends State<HomeNav> {
                                 MaterialPageRoute(
                                     builder: (context) =>  AddNav(fromhome: false,)));
         
-                                    }
+                                    
         
                           },
                           child: Container(
@@ -3110,6 +3046,9 @@ class _HomeNavState extends State<HomeNav> {
         
                               InkWell(
                                 onTap: () async {
+
+
+                                firebaseEventCalled("Click_Earn_Calculate_IOS");
                                  
         
         
@@ -3774,18 +3713,18 @@ class _HomeNavState extends State<HomeNav> {
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>BasicLoginInfo(fromWhere: sharedPreferences.getString(SizValue.source).toString())));
         
                                  }
-                                 else if(sharedPreferences.getString(SizValue.isLogged).toString()=="2")
-                                 {
+                                //  else if(sharedPreferences.getString(SizValue.isLogged).toString()=="2")
+                                //  {
         
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AccountCreate()));
+                                //     Navigator.push(context, MaterialPageRoute(builder: (context)=>AccountCreate()));
         
-                                 }
-                                 else if(sharedPreferences.getString(SizValue.underReview).toString()=="0"){
+                                //  }
+                                //  else if(sharedPreferences.getString(SizValue.underReview).toString()=="0"){
         
-                                      showReviewdialog(sharedPreferences.getString(SizValue.underReviewMsg).toString(),sharedPreferences.getString(SizValue.underReview).toString());
+                                //       showReviewdialog(sharedPreferences.getString(SizValue.underReviewMsg).toString(),sharedPreferences.getString(SizValue.underReview).toString());
         
         
-                                    }
+                                //     }
         
                                     else if(sharedPreferences.getString(SizValue.underReview).toString()=="2"){
         
@@ -3861,27 +3800,21 @@ class _HomeNavState extends State<HomeNav> {
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>BasicLoginInfo(fromWhere: sharedPreferences.getString(SizValue.source).toString())));
         
                                  }
-                                 else if(sharedPreferences.getString(SizValue.isLogged).toString()=="2")
-                                 {
+                                //  else if(sharedPreferences.getString(SizValue.isLogged).toString()=="2")
+                                //  {
         
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AccountCreate()));
+                                //     Navigator.push(context, MaterialPageRoute(builder: (context)=>AccountCreate()));
         
-                                 }
+                                //  }
         
-                                 else if(sharedPreferences.getString(SizValue.underReview).toString()=="0"){
+                                //  else if(sharedPreferences.getString(SizValue.underReview).toString()=="0"){
         
-                                      showReviewdialog(sharedPreferences.getString(SizValue.underReviewMsg).toString(),sharedPreferences.getString(SizValue.underReview).toString());
-        
-        
-                                    }
-        
-                                    else if(sharedPreferences.getString(SizValue.underReview).toString()=="2"){
-        
-                                      showReviewdialog(sharedPreferences.getString(SizValue.rejectedReviewMSG).toString(),sharedPreferences.getString(SizValue.underReview).toString());
+                                //       showReviewdialog(sharedPreferences.getString(SizValue.underReviewMsg).toString(),sharedPreferences.getString(SizValue.underReview).toString());
         
         
+                                //     }
         
-                                    }
+                                  
                                     else if(sharedPreferences.getString(SizValue.underReview).toString()=="3"){
         
                                       showReviewdialog(sharedPreferences.getString(SizValue.incompleteMessage).toString(),sharedPreferences.getString(SizValue.underReview).toString());
@@ -4678,24 +4611,24 @@ class _HomeNavState extends State<HomeNav> {
                     onWillPop: () async{
                       return  value=="3"? true: false;
                     },
-                    child: Center(
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.only(left: 30,right: 20),
-                        height: 180,
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(13)),
-                        child:  Scaffold(
-                          backgroundColor: Colors.transparent,
-                            body: Column( 
+                    child: Scaffold(
+                      backgroundColor: Colors.transparent,
+                        body: Center(
+                          child: Container(
+                          
+                            padding: const EdgeInsets.all(20),
+                               margin: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(13)),
+                            child: Column( 
+                              mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                                                  children: [
                              Container(
                               alignment: Alignment.center,
-                              width: 280,
+                              width: MediaQuery.of(context).size.width,
                                child: Text(
                                  title,
                                 maxLines: 4,
@@ -4708,44 +4641,44 @@ class _HomeNavState extends State<HomeNav> {
                                 
                                 ),),
                              ),
-                  
+                                        
                                 InkWell(
                                   onTap: 
                                   
                                     value=="2"?
-
+                                            
                                       () async
                                       {
-
+                                            
                                     
-
+                                            
                                      Navigator.pop(context);
                                    controller.updateIndex(0);
-
+                                            
                                             SharedPreferences sharedPreferences =
                                     await SharedPreferences.getInstance();
                                 sharedPreferences.clear();
-
+                                            
                                      Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                          builder: (context) =>   const Home()),
                                     (Route<dynamic> route) => false);
-
+                                            
                                       }
                                       
                                       
                                       :
-
+                                            
                                         value=="3"?
-
+                                            
                                         ()
                                         {
-
+                                            
                                           Navigator.pop(context);
-
+                                            
                                             Navigator.push(context, MaterialPageRoute(builder: (context)=> AccountCreate()));
-
+                                            
                                         }
                                         
                                         :
@@ -4766,24 +4699,24 @@ class _HomeNavState extends State<HomeNav> {
                                     ),
                                     child:  Text(
                                       value=="2"?
-
+                                            
                                       "LOGOUT":
-
+                                            
                                       value=="3"?
                                       "COMPLETE SIGNUP":
                                       
                                       "OK",
                                     textAlign: TextAlign.center,
                                    style: GoogleFonts.lexendExa(
-        
-        fontSize: 16,color: Colors.white,fontWeight: FontWeight.w300)),
+                              
+                              fontSize: 16,color: Colors.white,fontWeight: FontWeight.w300)),
                                   ),
                                 ),
                               
-                          ],
+                                                  ],
+                                                ),
+                          ),
                         )),
-                      ),
-                    ),
                   );
                 },
               );

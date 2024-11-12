@@ -664,26 +664,7 @@ class _MyProfileState extends State<MyProfile> with TickerProviderStateMixin {
                   width: 40,
                   height: 40,
                 )),
-            Wrap(
-              alignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              direction: Axis.horizontal,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Wishlist()));
-                  },
-                  child: SvgPicture.asset("assets/images/heart.svg",width: 20,height: 20,)),
-                const SizedBox(width: 20),
-                InkWell(
-                  onTap: (){
-
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=>const Cart()));
-                  },
-                  
-                  child: SvgPicture.asset("assets/images/bag.svg",width: 20,height: 20,)),
-              ],
-            )
+            const SizedBox(width: 60)
           ],
         ),
       ),

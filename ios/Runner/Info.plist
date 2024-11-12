@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.18</string>
+	<string>1.0.20</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>20</string>
+	<string>21</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tel</string>
@@ -69,6 +69,18 @@
 				<string>com.googleusercontent.apps.576481110625-dni337kuj4761amdnvc5rt4f65ccksp4</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb529030723404470</string>
+			</array>
+		</dict>
 	</array>
+	<key>FacebookAppID</key>
+	<string>529030723404470</string>
+	<key>FacebookClientToken</key>
+	<string>973d55116f01ac22985b99ba083c3c34</string>
+	<key>FacebookDisplayName</key>
+	<string>sizters_analytics</string>
 </dict>
 </plist>

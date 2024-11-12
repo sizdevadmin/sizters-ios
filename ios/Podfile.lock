@@ -11,6 +11,17 @@ PODS:
     - Flutter
   - device_information (0.0.1):
     - Flutter
+  - facebook_app_events (0.0.1):
+    - FBAudienceNetwork (~> 6.15)
+    - FBSDKCoreKit (~> 17.0)
+    - Flutter
+  - FBAEMKit (17.1.0):
+    - FBSDKCoreKit_Basics (= 17.1.0)
+  - FBAudienceNetwork (6.15.2)
+  - FBSDKCoreKit (17.1.0):
+    - FBAEMKit (= 17.1.0)
+    - FBSDKCoreKit_Basics (= 17.1.0)
+  - FBSDKCoreKit_Basics (17.1.0)
   - Firebase/CoreOnly (10.18.0):
     - FirebaseCore (= 10.18.0)
   - Firebase/Messaging (10.18.0):
@@ -205,6 +216,7 @@ DEPENDENCIES:
   - app_links (from `.symlinks/plugins/app_links/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - device_information (from `.symlinks/plugins/device_information/ios`)
+  - facebook_app_events (from `.symlinks/plugins/facebook_app_events/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
@@ -231,6 +243,10 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - FBAEMKit
+    - FBAudienceNetwork
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - Firebase
     - FirebaseCore
     - FirebaseCoreInternal
@@ -266,6 +282,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/device_info_plus/ios"
   device_information:
     :path: ".symlinks/plugins/device_information/ios"
+  facebook_app_events:
+    :path: ".symlinks/plugins/facebook_app_events/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
@@ -316,6 +334,11 @@ SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   device_information: d652f6dcea86bdc5300ffd495486de1d5047bf4f
+  facebook_app_events: acb7c266406d3e3592bcf846d7184172ecfd6492
+  FBAEMKit: cb719c53575a3be86ea873279f30d6a2c4e15881
+  FBAudienceNetwork: 2457a89b45e2596241fd81b0c2fd8cb6f6053869
+  FBSDKCoreKit: ecdb980a24633ccb012700299ceb16d0235e14d2
+  FBSDKCoreKit_Basics: 045101c4a9ef10c845347424d73a29aae02c3e43
   Firebase: 414ad272f8d02dfbf12662a9d43f4bba9bec2a06
   firebase_core: 0af4a2b24f62071f9bf283691c0ee41556dcb3f5
   firebase_messaging: 90e8a6db84b6e1e876cebce4f30f01dc495e7014

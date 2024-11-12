@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
 import 'package:siz/Controllers/BottomNavController.dart';
 import 'package:siz/HomePages/AddNav.dart';
 import 'package:siz/HomePages/BrowserNav.dart';
@@ -15,11 +13,8 @@ import 'package:siz/HomePages/HomeNav.dart';
 import 'package:siz/HomePages/ProfileNav.dart';
 import 'package:siz/Utils/Colors.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:transitioned_indexed_stack/transitioned_indexed_stack.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-
 
 
 class Home extends StatefulWidget {
@@ -56,7 +51,6 @@ class _HomeState extends State<Home> {
        
        updateDialog();
 
-
        debugPrint("new update");
     
      }
@@ -66,10 +60,6 @@ class _HomeState extends State<Home> {
         debugPrint("no found update");
 
      }
-
-  
-   
-
 
   }
 

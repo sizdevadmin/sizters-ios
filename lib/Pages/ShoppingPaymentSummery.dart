@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_svg/svg.dart';
@@ -105,6 +106,20 @@ class _ShoppingPaymentSummeryState extends State<ShoppingPaymentSummery>
   {
     sharedPreferences=await SharedPreferences.getInstance();
   }
+ 
+
+  firebaseEventCalled()
+  {
+    
+     try {
+      FacebookAppEvents facebookAppEvents = FacebookAppEvents();
+
+      facebookAppEvents.logEvent(
+        name: "OrderPlaceIOS",
+      );
+    } catch (e) {}
+  }
+
 
    
 
@@ -1361,7 +1376,11 @@ class _ShoppingPaymentSummeryState extends State<ShoppingPaymentSummery>
 
                         
                           if(grandTotal==0)
-                          {
+                          {  
+
+
+
+                            firebaseEventCalled();
 
 
                             orderPunch("");
@@ -2306,6 +2325,8 @@ class _ShoppingPaymentSummeryState extends State<ShoppingPaymentSummery>
         
       
         //Clear paymentIntent variable after successful payment
+
+        firebaseEventCalled();
          orderPunch(paymentId);
         paymentIntent.clear();
         setState(() {
