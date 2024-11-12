@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
 
   }
 
-  Future<String?> checkUpdate() async {
+   Future<String?> checkUpdate() async {
   const url = 'https://itunes.apple.com/lookup?bundleId=com.siz.siz';
 
   try {
